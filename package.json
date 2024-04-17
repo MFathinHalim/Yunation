@@ -1,0 +1,23 @@
+{
+  "name": "yunation",
+  "version": "1.0.0",
+  "description": "Yunation Website For Everyone^^",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MFathinHalim/Yunation.git"
+  },
+  "keywords": [
+    "Yunation",
+    "Drawing"
+  ],
+  "author": "Fathin, Yunayu, hoshiyomiryo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MFathinHalim/Yunation/issues"
+  },
+  "homepage": "https://github.com/MFathinHalim/Yunation#readme"
+}
