@@ -34,6 +34,7 @@ body {
 
 img {
   border-radius: 12px;
+  border: 2px dotted var(--primary) !important;
 }
 .btn {
   transition: transform 0.2s; /* Animation */
