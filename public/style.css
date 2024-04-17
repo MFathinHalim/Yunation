@@ -1,0 +1,32 @@
+:root {
+  --background: #f8f8f8;
+  --text: #030303;
+  --primary: #e493b3;
+  --secondary: #465845;
+  --accent: #ffcacc;
+}
+body {
+  background-color: var(--background) !important;
+  color: var(--text) !important;
+}
+.bg-white {
+  background-color: var(--background) !important;
+  color: var(--text) !important;
+}
+.btn-primary {
+  background-color: var(--primary) !important;
+  border: var(--primary) !important;
+}
+.btn-secondary {
+  background-color: var(--secondary) !important;
+}
+.highlight {
+  text-shadow: 2px 2px var(--primary);
+}
+.active {
+  font-weight: bolder !important;
+}
+
+img {
+  border-radius: 12px;
+}
