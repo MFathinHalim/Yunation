@@ -6,8 +6,9 @@
     <title>Yunation | <%= title %></title>
     <meta name="description" content="Yunation Website for Everyone!" />
     <meta name="keywords" content="Drawing, Discord, Server" />
-    <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="style.css" />
+
     <link
       href="https://fonts.googleapis.com/css?family=Karla"
       rel="stylesheet"
@@ -20,7 +21,7 @@
 
   </head>
   <body>
-<nav class="navbar navbar-expand-lg p-1 border shadow-sm m-2 position-fixed navbar-light bg-white rounded z-1">
+<nav class="navbar  navbar-expand-lg p-1 border shadow-sm m-2 glass position-fixed navbar-light rounded-lg z-1">
   <div class="container-fluid">
     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -29,13 +30,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item <% if(title==='Home') {%> active <% } %>">
-          <a class="nav-link" href="/">Yunation</a>
+          <a class="nav-link shadow-sm" href="/">Yunation</a>
         </li>
         <li class="nav-item <% if(title==='About') {%> active <% } %>">
-          <a class="nav-link" href="/about">About Web</a>
+          <a class="nav-link shadow-sm" href="/about">About Web</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle <% if(title==='SNS') {%> active <% } %>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link shadow-sm dropdown-toggle <% if(title==='SNS') {%> active <% } %>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             YunaSNS
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

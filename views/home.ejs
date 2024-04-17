@@ -1,8 +1,8 @@
 <%- include("partials/header") %>
 <div class="max-1200 rounded-4">
   <div class="text-center container mt-3">
-    <h1 class="display-5 fw-bold">
-      <span class="highlight">Welcome to Yunation</span>
+    <h1 class="display-5 fw-bold" style="font-family: 'Montserrat'">
+      <span class="highlight">Yunation</span>
     </h1>
   </div>
   <div class="jumbotron mb-4 mt-4 container" id="jumbotron" style="width: 100%">
@@ -68,27 +68,27 @@
     </div>
     <div class="d-md-flex d-none flex-wrap gap-1 p-1">
       <img
-        class="col"
+        class="col shadow-sm"
         style="object-fit: cover; max-height: 300px"
         src="https://pbs.twimg.com/media/F9b-dY9aMAAac0P.jpg"
         alt="Responsive Image"
       />
       <img
-        class="col"
+        class="col shadow-sm"
         style="object-fit: cover; max-height: 300px"
         src="https://pbs.twimg.com/media/GCsJvjua0AAt0GE?format=jpg&name=4096x4096"
         alt="Responsive Image"
       />
       <img
-        class="col"
+        class="col shadow-sm d-md-block d-none"
         style="object-fit: cover; max-height: 300px"
         src="https://pbs.twimg.com/media/F-E7fw5a4AAkGPD.jpg"
         alt="Responsive Image"
       />
       <img
-        class="col d-lg-block d-none"
+        class="col d-lg-block d-none shadow-sm"
         style="object-fit: cover; max-height: 300px"
-        src="https://pbs.twimg.com/media/F14bH4TaEAEACgU.png"
+        src="./images/btr1.jpg"
         alt="Responsive Image"
       />
     </div>
@@ -97,9 +97,11 @@
     </h4>
   </div>
 
-  <div class="text-center p-2">
+  <div class="text-center p-4 border border-secondary rounded container">
     <div class="col-lg-6 mx-auto">
-      <h3 class="display-6 fw-bold" style="font-family: 'Montserrat'">About</h3>
+      <h3 class="display-6 fw-bold" style="font-family: 'Montserrat'">
+        A Little About us <i class="fa-solid fa-snowflake"></i>
+      </h3>
       <p class="h3 mt-2 mb-3">
         Yunation is an Art Community made by our Drawing Hero,
         <strong class="highlight">YUNAYU</strong>!
@@ -109,13 +111,13 @@
           href="https://youtube.com/@yunayuispink"
           class="btn btn-secondary btn-lg rounded-pill"
         >
-          Yunayu's Channel
+          <i class="fab fa-youtube"></i> Yunayu's Channel
         </a>
         <a
           href="https://discord.gg/yunayuispink"
           class="btn btn-primary btn-lg rounded-pill"
         >
-          Discord
+          Discord <i class="fab fa-discord"></i>
         </a>
       </div>
     </div>
@@ -125,7 +127,7 @@
     <h3 class="display-6 fw-bold" style="font-family: 'Montserrat'">
       <strong class="highlight">YUNAYU</strong>
     </h3>
-    <div class="d-flex">
+    <div class="d-md-flex">
       <p class="h3 mt-2 mb-3">
         Yunayu is a drawing hero!<br />a very talented artist, coming to bless
         us with her amazing artworks.<br />She also take a lot of inspiration
@@ -191,37 +193,51 @@
                 alt=""
               />
             </div>
-            <div>
+            <div class="d-lg-block d-md-none">
               <img
                 loading="lazy"
                 style="object-fit: cover"
                 data-aos="fade-down"
                 class="img-fluid rounded-lg"
-                src="https://pbs.twimg.com/media/F4J5-MsaoAAfurQ.png 
-              "
+                src="https://pbs.twimg.com/media/F2vzXNlaMAAO6Gi.jpg"
                 alt=""
               />
             </div>
           </div>
+          <div class="col d-xl-none">
+            <img
+              loading="lazy"
+              style="object-fit: cover"
+              data-aos="fade-down"
+              class="img-fluid rounded-lg"
+              src="https://pbs.twimg.com/media/F2vzXNlaMAAO6Gi.jpg"
+              alt=""
+            />
+          </div>
         </div>
       </div>
     </article>
-    <h1 class="pt-3"><strong class="highlight">Yunation</strong></h1>
-    <p class="h3 mt-2 mb-3">
-      (Yuna + Nation = Yunation!) <br />Yunation is community made by Yunayu!
-      Yunation not just Art community, but also many things like gaming, music,
-      photography and even Programming!
-    </p>
-    <div class="text-end">
+    <article>
+      <h1 class="pt-3"><strong class="highlight">Yunation</strong></h1>
+      <p class="h3 mt-2 mb-3">
+        (Yuna + Nation = Yunation!) <br />Yunation is community made by Yunayu!
+        Yunation not just Art community, but also many things like gaming,
+        music, photography and even Programming!
+      </p>
+    </article>
+
+    <article class="text-end">
       <h1 class="pt-3"><strong class="highlight">Yuyu</strong></h1>
       <p class="h3 mt-2 mb-3">Yuyu is name of the Yunation people!</p>
+    </article>
+    <div class="text-center">
+      <a
+        href="https://discord.gg/yunayuispink"
+        class="btn btn-primary btn-lg rounded-pill"
+      >
+        Join the Discord <i class="fab fa-discord"></i>
+      </a>
     </div>
-    <a
-      href="https://discord.gg/yunayuispink"
-      class="btn btn-primary btn-lg rounded-pill"
-    >
-      Join the Discord :3
-    </a>
   </div>
 </div>
 
