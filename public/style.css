@@ -60,6 +60,18 @@ img {
   backdrop-filter: blur(5.8px) !important;
   -webkit-backdrop-filter: blur(5.8px) !important;
 }
+.glasses {
+  background: rgba(122, 74, 122, 0.21) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(5.8px) !important;
+  -webkit-backdrop-filter: blur(5.8px) !important;
+}
+@media (max-width: 767px) {
+  .glasses {
+    background: none !important;
+    backdrop-filter: none !important;
+  }
+}
 body {
   font-family: "Karla";
 }
