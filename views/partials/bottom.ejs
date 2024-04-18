@@ -1,73 +1,98 @@
     <hr>
     <footer class="text-center mt-3">
-          <!-- Grid container -->
-  <div class="container p-4">
-    <!-- Section: Iframe -->
-    <section class="">
-      <div class="row d-flex justify-content-center">
-        <div class="col-lg-6">
-          <div class="ratio ratio-16x9">
-            <iframe class="rounded shadow" width="1905" height="803" src="https://www.youtube.com/embed/Ryrun7d6Eic" title="Drawing people in Vrchat part2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              <!-- Grid container -->
+      <div class="container p-4">
+        <!-- Section: Iframe -->
+        <section class="">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-6">
+              <div class="ratio ratio-16x9">
+                <iframe class="rounded shadow" width="1905" height="803" src="https://www.youtube.com/embed/Ryrun7d6Eic" title="Drawing people in Vrchat part2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+        <!-- Section: Iframe -->
       </div>
-    </section>
-    <!-- Section: Iframe -->
-  </div>
-          <div class="container pt-4">
-    <!-- Section: Social media -->
-    <section class="mb-4">
-      <!-- Facebook -->
-      <a
-        data-mdb-ripple-init
-        class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
-        href="#!"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-twitch"></i
-      ></a>
+        <div class="container pt-4">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <!-- Facebook -->
+          <a
+            data-mdb-ripple-init
+            class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
+            href="https://www.twitch.tv/yunayuispink"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-twitch"></i
+          ></a>
 
-      <!-- Twitter -->
-      <a
-        data-mdb-ripple-init
-        class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
-        href="https://twitter.com/yunayuispink"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-twitter"></i
-      ></a>
+          <!-- Twitter -->
+          <a
+            data-mdb-ripple-init
+            class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
+            href="https://twitter.com/yunayuispink"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-twitter"></i
+          ></a>
 
 
-      <!-- Instagram -->
-      <a
-        data-mdb-ripple-init
-        class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
-        href="https://www.instagram.com/yunayuispink"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-instagram"></i
-      ></a>
-      <!-- Github -->
-      <a
-        data-mdb-ripple-init
-        class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
-        href="https://github.com/MFathinHalim/Yunation"
-        role="button"
-        data-mdb-ripple-color="dark"
-        ><i class="fab fa-github"></i
-      ></a>
-    </section>
-    <!-- Section: Social media -->
-  </div>
+          <!-- Instagram -->
+          <a
+            data-mdb-ripple-init
+            class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
+            href="https://www.instagram.com/yunayuispink"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <!-- Github -->
+          <a
+            data-mdb-ripple-init
+            class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
+            href="https://github.com/MFathinHalim/Yunation"
+            role="button"
+            data-mdb-ripple-color="dark"
+            ><i class="fab fa-github"></i
+          ></a>
+        </section>
+        <!-- Section: Social media -->
+      </div>
 
-  <!-- Grid container -->
+      <!-- Grid container -->
 
-  <!-- Copyright -->
-  <div class="text-center p-3">
-    <a class="text-black text-decoration-none" href="/about">Made by Yunation</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-    <script src="js/bootstrap.bundle.min.js"></script>
+      <!-- Copyright -->
+      <div class="text-center p-3">
+        <a class="text-black text-decoration-none" href="/about">Made by Yunation</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script>AOS.init();</script>
+    <script>
+  const imageFile = document.getElementById("imageFile");
+  const imagePreview = document.getElementById("image-preview");
+
+  imageFile.addEventListener("change", function (e) {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      imagePreview.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function onSubmit(token) {
+    // Handle form submission or any other action you want after reCAPTCHA is verified
+    document.getElementById("myForm").submit();
+  }
+</script>
 </body>
 </html>

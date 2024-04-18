@@ -1,13 +1,21 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yunation | <%= title %></title>
     <meta name="description" content="Yunation Website for Everyone!" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/55de0177-2d52-43bf-a066-45796ec8e7c9/BocchiYuna.webp?v=1713409649865"
+    />
+    <meta property="og:image" content="https://cdn.glitch.global/55de0177-2d52-43bf-a066-45796ec8e7c9/BocchiYuna.webp?v=1713409649865" />
     <meta name="keywords" content="Drawing, Discord, Server" />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
     <link
       href="https://fonts.googleapis.com/css?family=Karla"
       rel="stylesheet"
@@ -16,35 +24,274 @@
       href="https://fonts.googleapis.com/css?family=Montserrat"
       rel="stylesheet"
     />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
   </head>
   <body>
-<nav class="navbar navbar-expand-lg p-1 border shadow-sm m-2 position-fixed navbar-light bg-white rounded z-1">
-  <div class="container-fluid">
-    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav
+      class="navbar navbar-expand-lg p-1 border shadow-sm m-2 glass position-fixed navbar-light rounded-lg z-1"
+    >
+      <div class="container-fluid">
+        <button
+          class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item <% if(title==='Home') {%> active <% } %>">
-          <a class="nav-link" href="/">Yunation</a>
-        </li>
-        <li class="nav-item <% if(title==='About') {%> active <% } %>">
-          <a class="nav-link" href="/about">About Web</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle <% if(title==='SNS') {%> active <% } %>" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            YunaSNS
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Fanart</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Challange</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item <% if(title==='Home') {%> active <% } %>">
+              <a class="nav-link shadow-sm" href="/">Yunation</a>
+            </li>
+            <li class="nav-item <% if(title==='About') {%> active <% } %>">
+              <a class="nav-link shadow-sm" href="/about">About Web</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link shadow-sm dropdown-toggle <% if(title==='YunaSNS') {%> active <% } %>"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                YunaSNS
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="navbarDropdown"
+              >
+                <a class="dropdown-item" href="/YunaSNS">Fanart</a>
+                <a class="dropdown-item" href="/YunaSNS/challenge">Challange</a>
+                <div class="dropdown-divider"></div>
+                <a
+                  class="nav-link add"
+                  href="#"
+                  data-bs-toggle="modal"
+                  data-bs-target="#uploadModal"
+                >
+                  <strong>Add Image</strong>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div
+      class="modal fade"
+      id="uploadModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="uploadModalLabel"
+      aria-describedby="uploadModalBody"
+    >
+      <div
+        class="modal-dialog bg-transparent modal-xl"
+        style="border-radius: 12px 12px 0 0 !important"
+        role="document"
+      >
+        <div class="modal-content shadow">
+          <div
+            class="modal-header"
+            style="border-radius: 12px 12px 0 0 !important"
+          >
+            <h5 class="modal-title" id="uploadModalLabel">
+              Add Image ⸜(｡˃ ᵕ ˂ )⸝♡
+            </h5>
           </div>
-        </li>
-      </ul>
+          <div
+            class="modal-body"
+            id="uploadModalBody"
+            style="border-radius: 0 0 12px 12px !important"
+          >
+            <% if(challenge) { %>
+            <form
+              action="/post/challenge"
+              method="post"
+              id="myForm"
+              class="row no-gutters"
+              enctype="multipart/form-data"
+            >
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <label for="imageName">Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="imageName"
+                    name="nama"
+                    style="border: 2px solid var(--accent) !important"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="imageDesc">Description</label>
+                  <textarea
+                    class="form-control"
+                    id="imageDesc"
+                    rows="3"
+                    style="border: 2px solid var(--accent) !important"
+                    name="desc"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="imageFile" class="btn btn-secondary rounded-pill"
+                    >Choose Image</label
+                  >
+                  <input
+                    style="display: none"
+                    type="file"
+                    class="form-control-file"
+                    id="imageFile"
+                    name="image"
+                    accept="image/*"
+                    required
+                  />
+                  <br />
+                  <label for="imageLink">Or Pasted From Image Link</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="imageLink"
+                    style="border: 2px solid var(--accent) !important"
+                    name="link"
+                    autocomplete="off"
+                  />
+                </div>
+                <button
+                  data-sitekey="6LfslRQoAAAAAHVBGwEVitjEQSjCD6F8unKDUdct"
+                  data-callback="onSubmit"
+                  name="g-recaptcha-response"
+                  id="postButton"
+                  data-action="submit"
+                  type="submit"
+                  class="btn g-recaptcha btn-primary"
+                >
+                  Upload
+                </button>
+                <button
+                  type="button"
+                  class="text-white btn btn-md btn-danger rounded-pill"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div class="col-md-6 d-md-block pl-3" id="bruh">
+                <label>Preview</label>
+                <br />
+
+                <img
+                  src="https://static.wikia.nocookie.net/theallever/images/0/0a/THE_Preview_logo.jpg/revision/latest?cb=20201013032038"
+                  class="mb-2"
+                  id="image-preview"
+                  style="max-width: 100%"
+                />
+              </div>
+            </form>
+            <% } else {%>
+            <form
+              action="/post"
+              method="post"
+              id="myForm"
+              class="row no-gutters"
+              enctype="multipart/form-data"
+            >
+              <div class="col-12 col-md-6">
+                <div class="form-group">
+                  <label for="imageName">Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="imageName"
+                    name="nama"
+                    style="border: 2px solid var(--accent) !important"
+                    autocomplete="off"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="imageDesc">Description</label>
+                  <textarea
+                    class="form-control"
+                    id="imageDesc"
+                    rows="3"
+                    style="border: 2px solid var(--accent) !important"
+                    name="desc"
+                    required
+                  ></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="imageFile" class="btn btn-secondary rounded-pill"
+                    >Choose Image</label
+                  >
+                  <input
+                    style="display: none"
+                    type="file"
+                    class="form-control-file"
+                    id="imageFile"
+                    name="image"
+                    accept="image/*"
+                    required
+                  />
+                  <br />
+                  <label for="imageLink">Or Pasted From Image Link</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="imageLink"
+                    style="border: 2px solid var(--accent) !important"
+                    name="link"
+                    autocomplete="off"
+                  />
+                </div>
+                <button
+                  data-sitekey="6LfslRQoAAAAAHVBGwEVitjEQSjCD6F8unKDUdct"
+                  data-callback="onSubmit"
+                  name="g-recaptcha-response"
+                  id="postButton"
+                  data-action="submit"
+                  type="submit"
+                  class="btn g-recaptcha btn-primary"
+                >
+                  Upload
+                </button>
+                <button
+                  type="button"
+                  class="text-white btn btn-md btn-danger rounded-pill"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                >
+                  Cancel
+                </button>
+              </div>
+              <div class="col-md-6 d-md-block pl-3" id="bruh">
+                <label>Preview</label>
+                <br />
+
+                <img
+                  src="https://static.wikia.nocookie.net/theallever/images/0/0a/THE_Preview_logo.jpg/revision/latest?cb=20201013032038"
+                  class="mb-2"
+                  id="image-preview"
+                  style="max-width: 100%"
+                />
+              </div>
+            </form>
+            <% } %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</nav>

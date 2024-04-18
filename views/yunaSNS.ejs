@@ -1,0 +1,99 @@
+<%- include("partials/header") %>
+
+<div class="container-fluid pt-3">
+  <h1
+    class="display-5 fw-bold text-center container"
+    style="font-family: 'Montserrat'"
+  >
+    <% if(challenge) { %> <span class="highlight">Yuna Challenge</span> <% }
+    else { %><span class="highlight">Yunation</span> <% } %>
+  </h1>
+  <div class="card-columns grid" id="cardContainer">
+    <% if(data) { %>
+    <!-- Tambahkan id="cardContainer" di sini -->
+    <!-- Sample image cards -->
+    <% let datalist = data.sort(() => Math.random() - 0.5);
+    datalist.slice(0,40).forEach((entry) => { %>
+
+    <a
+      href="/YunayuSNS/<% if(challenge) { %>/challenge/<% } %><%= entry.id %>"
+      class="card bg-transparent"
+    >
+      <img
+        class="card imgCard"
+        src="<%= entry.imgLink %>"
+        style="
+          max-height: <%= Math.floor(Math.random() * (500 - 350 + 1)) + 350 %>px;
+        "
+      />
+
+      <p class="ml-3 h3 text-black"><%= entry.name %></p>
+    </a>
+
+    <% }); %>
+    <p style="display: none" id="datalist"><%- JSON.stringify(datalist) %></p>
+    <% } else { %>
+    <p class="text-center">Still Empty</p>
+    <% } %>
+  </div>
+</div>
+<% if(!challenge) { %>
+<script>
+  window.scrollTo(0, 0);
+  let dataNow = 40;
+  const str = document
+    .getElementById("datalist")
+    .innerHTML.replace(/,\s*$/, "");
+  let datalist = JSON.parse(str);
+  window.onscroll = function (ev) {
+    if (dataNow >= datalist.length) {
+      dataNow = Math.floor(Math.random() * datalist.length);
+    }
+    if (
+      window.innerHeight / 1.5 + Math.round(window.scrollY) >=
+      document.body.offsetHeight / 1.5
+    ) {
+      console.log("p");
+      const cardContainer = document.getElementById("cardContainer");
+      const newData = datalist
+        .sort(() => Math.random() - 0.5)
+        .slice(dataNow, dataNow + 40)
+        .sort(() => Math.random() - 0.5);
+
+      newData.forEach((entry) => {
+        const card = document.createElement("a");
+        card.setAttribute("href", `/YunayuSNS/${entry.id}`);
+        card.classList.add("card", "bg-transparent");
+
+        const img = document.createElement("img");
+        img.classList.add("card");
+        img.src = `${entry.imgLink}${
+          entry.imgLink && entry.imgLink.includes("imagekit.io")
+            ? "?updatedAt=1705798245623"
+            : ""
+        }`;
+        img.style.borderRadius = "24px";
+        img.style.maxHeight = `${
+          Math.floor(Math.random() * (500 - 350 + 1)) + 350
+        }px`;
+        img.style.objectFit = "cover";
+
+        const p = document.createElement("p");
+        p.classList.add("ml-3", "h5", "text-decoration-none");
+        p.textContent = entry.name;
+
+        card.appendChild(img);
+        card.appendChild(p);
+        cardContainer.appendChild(card);
+      });
+
+      // Update current data count
+      dataNow += newData.length;
+    }
+  };
+
+  function getMoreData() {
+    // Slice data from dataNow to dataNow + 10 (for example)
+  }
+</script>
+<% } %> <%- include("partials/bottom.ejs") %>
