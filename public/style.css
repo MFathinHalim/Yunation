@@ -45,13 +45,6 @@ img {
   transition: transform 0.2s; /* Animation */
 }
 
-.btn:hover {
-  transform: scale(
-    1.2
-  ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  margin-left: 20px;
-  margin-right: 20px;
-}
 .btn-link:hover {
   background-color: var(--secondary);
   color: white !important;
@@ -66,4 +59,159 @@ img {
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1) !important;
   backdrop-filter: blur(5.8px) !important;
   -webkit-backdrop-filter: blur(5.8px) !important;
+}
+body {
+  font-family: "Karla";
+}
+.grecaptcha-badge {
+  visibility: hidden;
+}
+.form-group > input,
+.form-group > .btn,
+.form-group > textarea {
+  border-radius: 12px;
+}
+label {
+  font-weight: bold;
+}
+
+.modal-header {
+  border-bottom: none;
+  padding-bottom: 3px !important;
+}
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.card > img {
+  cursor: zoom-in;
+  border-radius: 24px;
+  object-fit: cover;
+  border-color: var(--accent) !important;
+  border: transparent 3px;
+  transition: opacity 0.2s ease, border 0.1s linear;
+}
+
+.card > img:hover {
+  opacity: 0.6;
+  border: double 3px;
+}
+@keyframes border-anim {
+  from {
+    border-color: transparent;
+  }
+  to {
+    border-color: #ff0000;
+  }
+}
+
+.nav-brand:active {
+  transform: scale(0.9);
+}
+.add {
+  transition: all 0.2s ease-in-out;
+}
+
+.add:hover {
+  background-color: var(--secondary) !important;
+  color: white !important;
+}
+
+#floating-button:hover {
+  box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  #floating-button {
+    bottom: 10px;
+    right: 10px;
+  }
+  #bruh {
+    padding-left: 0 !important;
+  }
+}
+.container-fluid {
+  padding-left: 80px !important;
+  padding-right: 80px !important;
+  margin: 0px;
+}
+body {
+  font-family: "Karla";
+}
+/* Custom styles for the Pinterest-style layout */
+input,
+textarea {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+.card {
+  border: none;
+}
+.card,
+img {
+  border-radius: 16px !important;
+}
+.card-img-top {
+  border-radius: 12px 12px 0 0;
+}
+::placeholder {
+  color: var(--text) !important;
+}
+.card-columns {
+  column-count: 5;
+}
+
+.card {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.btn-primary {
+  background-color: var(--accent);
+  border: solid var(--accent);
+  color: #11181a;
+}
+.btn-primary,
+.modal-dialog {
+  border-radius: 30px;
+}
+@media (max-width: 1400px) {
+  .card-columns {
+    column-count: 4;
+  }
+}
+@media (max-width: 991px) {
+  .container-fluid {
+    padding: 10px !important;
+    padding-right: 25px !important;
+    margin: 0px !important;
+  }
+  .card-columns {
+    column-count: 3;
+  }
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card-columns {
+    column-count: 2;
+  }
+}
+@media (max-width: 460px) {
+  .card-columns {
+    column-count: 1;
+  }
+}
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--accent);
+  outline: 1px solid slategrey;
 }

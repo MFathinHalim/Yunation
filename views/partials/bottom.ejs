@@ -69,7 +69,30 @@
       <!-- Copyright -->
     </footer>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
     <script>AOS.init();</script>
+    <script>
+  const imageFile = document.getElementById("imageFile");
+  const imagePreview = document.getElementById("image-preview");
+
+  imageFile.addEventListener("change", function (e) {
+    const file = e.target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      imagePreview.src = event.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+
+  function onSubmit(token) {
+    // Handle form submission or any other action you want after reCAPTCHA is verified
+    document.getElementById("myForm").submit();
+  }
+</script>
 </body>
 </html>
