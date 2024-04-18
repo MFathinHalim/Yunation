@@ -6,7 +6,7 @@
   --accent: #ffcacc;
 }
 body {
-  font-family: "Karla";
+  font-family: "Poppins" !important;
 
   background-color: var(--background) !important;
   color: var(--text) !important;
@@ -42,7 +42,7 @@ img {
   border: 2px dotted var(--primary) !important;
 }
 .btn {
-  transition: transform 0.2s; /* Animation */
+  transition: background 0.2s !important; /* Animation */
 }
 
 .btn-link:hover {
@@ -95,12 +95,6 @@ label {
   border-bottom: none;
   padding-bottom: 3px !important;
 }
-.navbar-toggler:focus,
-.navbar-toggler:active,
-.navbar-toggler-icon:focus {
-  outline: none;
-  box-shadow: none;
-}
 
 .card > img {
   cursor: zoom-in;
@@ -124,9 +118,6 @@ label {
   }
 }
 
-.nav-brand:active {
-  transform: scale(0.9);
-}
 .add {
   transition: all 0.2s ease-in-out;
 }
