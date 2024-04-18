@@ -17,6 +17,9 @@ app.use(
 app.get("/", function (req, res) {
   res.render("home", { title: "Home" });
 });
+app.get("/about", function (req, res) {
+  res.render("about", { title: "About" });
+});
 
 const port = 8080;
 

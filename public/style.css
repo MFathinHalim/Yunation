@@ -6,8 +6,13 @@
   --accent: #ffcacc;
 }
 body {
+  font-family: "Karla";
+
   background-color: var(--background) !important;
   color: var(--text) !important;
+}
+a {
+  color: var(--primary);
 }
 .bg-white {
   background-color: var(--background) !important;
@@ -40,13 +45,12 @@ img {
   transition: transform 0.2s; /* Animation */
 }
 
-.btn-primary:hover,
-.btn-link:hover {
+.btn:hover {
   transform: scale(
     1.2
   ); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 .btn-link:hover {
   background-color: var(--secondary);
