@@ -224,7 +224,7 @@ app.post("/post/challenge/:id/comment", async (req, res) => {
 });
 const port = 8080;
 mongoose.set("strict", false);
-mongoose.connect(process.env.MONGODBURI).then(() => {
+mongoose.connect(process.env.MONGODBURI, { useNewUrlParser: true }).then(() => {
   mainModel
     .updateMany(
       { $or: [{ comments: { $exists: false } }, { comments: { $size: 0 } }] },
@@ -232,62 +232,56 @@ mongoose.connect(process.env.MONGODBURI).then(() => {
       { upsert: true } // Menambahkan dokumen baru jika tidak ditemukan
     )
     .then((updateResult) => {
-      console.log(`${updateResult.modifiedCount} dokumen diperbarui`);
       // Setelah updateMany selesai, ambil data terbaru dari database
       return mainModel.find({});
     })
     .then((res) => {
       data = res;
-      mongoose.connect(process.env.MONGODBURI).then(() => {
-        challengeModel
-          .updateMany(
-            {
-              $or: [
-                { comments: { $exists: false } },
-                { comments: { $size: 0 } },
-              ],
-            },
-            { $set: { comments: [] } },
-            { upsert: true } // Menambahkan dokumen baru jika tidak ditemukan
-          )
-          .then((updateResult) => {
-            console.log(`${updateResult.modifiedCount} dokumen diperbarui`);
-            // Setelah updateMany selesai, ambil data terbaru dari database
-            return challengeModel.find({});
-          })
-          .then((res2) => {
-            dataChallenge = res2;
-            app.get("/YunayuSNS/:id", function (req, res) {
-              const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
-              const searchResult = data.find((entry) => entry.id == searchTerm);
+      challengeModel
+        .updateMany(
+          {
+            $or: [{ comments: { $exists: false } }, { comments: { $size: 0 } }],
+          },
+          { $set: { comments: [] } },
+          { upsert: true } // Menambahkan dokumen baru jika tidak ditemukan
+        )
+        .then((updateResult) => {
+          console.log(`${updateResult.modifiedCount} dokumen diperbarui`);
+          // Setelah updateMany selesai, ambil data terbaru dari database
+          return challengeModel.find({});
+        })
+        .then((res2) => {
+          dataChallenge = res2;
+          app.get("/YunayuSNS/:id", function (req, res) {
+            const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
+            const searchResult = data.find((entry) => entry.id == searchTerm);
 
-              res.render("img", {
-                title: "YunayuSNS",
-                data: data,
-                entry: searchResult,
-                searchTerm: "",
-                challenge: false,
-              });
-            });
-            app.get("/YunayuSNS/challenge/:id", function (req, res) {
-              const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
-              const searchResult = dataChallenge.find(
-                (entry) => entry.id == searchTerm
-              );
-
-              res.render("img", {
-                title: "YunayuSNS",
-                data: data,
-                entry: searchResult,
-                searchTerm: "",
-                challenge: true,
-              });
-            });
-
-            app.listen(port, () => {
-              console.log(`[app]: app is running at http://localhost:${port}`);
+            res.render("img", {
+              title: "YunayuSNS",
+              data: data,
+              entry: searchResult,
+              searchTerm: "",
+              challenge: false,
             });
           });
-      });
+          app.get("/YunayuSNS/challenge/:id", function (req, res) {
+            const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
+            const searchResult = dataChallenge.find(
+              (entry) => entry.id == searchTerm
+            );
+
+            res.render("img", {
+              title: "YunayuSNS",
+              data: data,
+              entry: searchResult,
+              searchTerm: "",
+              challenge: true,
+            });
+          });
+
+          app.listen(port, () => {
+            console.log(`[app]: app is running at http://localhost:${port}`);
+          });
+        });
     });
 });
