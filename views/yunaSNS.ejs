@@ -13,7 +13,7 @@
     <!-- Tambahkan id="cardContainer" di sini -->
     <!-- Sample image cards -->
     <% let datalist = data.sort(() => Math.random() - 0.5);
-    datalist.slice(0,40).forEach((entry) => { %>
+    datalist.slice(0,40).forEach((entry) => { %> <% if (entry.imgLink) { %>
 
     <a
       href="/YunayuSNS/<% if(challenge) { %>/challenge/<% } %><%= entry.id %>"
@@ -29,13 +29,11 @@
 
       <p class="ml-3 h3 text-black"><%= entry.name %></p>
     </a>
-
-    <% }); %>
+    <% } %> <% }); %>
     <p style="display: none" id="datalist"><%- JSON.stringify(datalist) %></p>
     <% } else { %>
     <p class="text-center">Still Empty</p>
     <% } %>
   </div>
 </div>
-
-<% } %> <%- include("partials/bottom.ejs") %>
+<%- include("partials/bottom.ejs") %>
