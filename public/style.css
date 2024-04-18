@@ -74,6 +74,10 @@ body {
 label {
   font-weight: bold;
 }
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
 
 .modal-header {
   border-bottom: none;
