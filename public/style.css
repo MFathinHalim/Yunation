@@ -6,7 +6,7 @@
   --accent: #ffcacc;
 }
 body {
-  font-family: "Poppins" !important;
+  font-family: "Karla" !important;
 
   background-color: var(--background) !important;
   color: var(--text) !important;
@@ -32,6 +32,8 @@ a {
 }
 .highlight {
   text-shadow: 2px 2px var(--primary);
+  font-family: "Shadows Into Light";
+  font-size: larger;
 }
 .active {
   font-weight: bolder !important;
