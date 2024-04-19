@@ -91,7 +91,17 @@
 
   function onSubmit(token) {
     // Handle form submission or any other action you want after reCAPTCHA is verified
+  var isLoggedIn = localStorage.getItem('isLoggedIn');
+  if(isLoggedIn === "true") {
     document.getElementById("myForm").submit();
+  }else {
+    Swal.fire({
+      icon: "info",
+      title: "Oops...",
+      text: "You Need To Login!",
+      footer: '<a href="/YunayuSNS/login" class="btn btn-primary rounded">Login</a>'
+    });
+  }
   }
 </script>
 </body>

@@ -81,7 +81,7 @@ class="navbar navbar-expand-sm p-1 border shadow-sm m-2 glass position-fixed nav
                 aria-labelledby="navbarDropdown"
               >
                 <a class="dropdown-item" href="/YunaSNS">Fanart</a>
-                <a class="dropdown-item" href="/YunaSNS/challenge">Challange</a>
+                <!--a class="dropdown-item" href="/YunaSNS/challenge">Challange</a-->
                 <div class="dropdown-divider"></div>
                 <a
                   class="add dropdown-item"
@@ -91,6 +91,7 @@ class="navbar navbar-expand-sm p-1 border shadow-sm m-2 glass position-fixed nav
                 >
                   <strong>Add Image</strong>
                 </a>
+                <a class="dropdown-item" href="/Logout">Logout</a>
               </div>
             </li>
           </ul>
@@ -180,6 +181,14 @@ class="navbar navbar-expand-sm p-1 border shadow-sm m-2 glass position-fixed nav
                     autocomplete="off"
                   />
                 </div>
+                <input
+                    type="text"
+                    class="form-control d-none"
+                    id="username"
+                    style="border: 2px solid var(--accent) !important"
+                    name="username"
+                    autocomplete="off"
+                  />
                 <button
                   data-sitekey="6LfslRQoAAAAAHVBGwEVitjEQSjCD6F8unKDUdct"
                   data-callback="onSubmit"
@@ -306,3 +315,4 @@ class="navbar navbar-expand-sm p-1 border shadow-sm m-2 glass position-fixed nav
       </div>
     </div>
   <div class="pt-5"></div>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

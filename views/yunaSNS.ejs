@@ -3,25 +3,29 @@
 <div class="container-fluid pt-3">
   <h1
     class="display-5 fw-bold text-center container"
-    style="font-family: 'Montserrat'"
+    style="font-family: 'Shadows Into Light'"
   >
-    <% if(challenge) { %> <span class="highlight">Yuna Challenge</span> <% }
-    else { %><span class="highlight">Yunation</span> <% } %>
+    <% if(challenge) { %>
+    <span class="highlight">Yuna Challenge</span> <% } else { %><span
+      class="highlight"
+      >Yunation</span
+    >
+    <% } %>
   </h1>
   <div class="card-columns grid" id="cardContainer">
     <% if(data) { %>
     <!-- Tambahkan id="cardContainer" di sini -->
     <!-- Sample image cards -->
     <% let datalist = data.sort(() => Math.random() - 0.5);
-    datalist.slice(0,40).forEach((entry) => { %> <% if (entry.imgLink) { %>
-
+    datalist.slice(0,40).forEach((entry) => { %> <% if (entry.imgLink) { %> <%
+    if(entry.accept) { %>
     <a
-      href="/YunayuSNS/<% if(challenge) { %>/challenge/<% } %><%= entry.id %>"
+      href="/YunayuSNS/<% if(challenge) { %>/challenge/<% } %>details/<%= entry.id %>"
       class="card bg-transparent"
     >
       <img
         class="card imgCard"
-        src="<%= entry.imgLink %>"
+        src="<%= entry.imgLink %><% if(entry.imgLink && entry.imgLink.includes('imagekit.io')) { %>?updatedAt=1705798245623<% } %>"
         style="
           max-height: <%= Math.floor(Math.random() * (500 - 350 + 1)) + 350 %>px;
         "
@@ -29,7 +33,7 @@
 
       <p class="ml-3 h3 text-black"><%= entry.name %></p>
     </a>
-    <% } %> <% }); %>
+    <% }} %> <% }); %>
     <p style="display: none" id="datalist"><%- JSON.stringify(datalist) %></p>
     <% } else { %>
     <p class="text-center">Still Empty</p>
