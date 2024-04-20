@@ -64,7 +64,7 @@ app.post("/post", upload.single("image"), async (req, res) => {
   // TODO: Sesuaikan dengan data yang diunggah dari penyimpanan memori
   const desc = req.body.desc;
   const name = req.body.name;
-  const userId = btoa(req.body.username);
+  const userId = Buffer.from(req.body.username).toString("base64");
   const id = data.length + 1;
   const accept = false;
   let imgLink;
@@ -119,6 +119,7 @@ app.post("/post", upload.single("image"), async (req, res) => {
     res.redirect("/YunaSNS/" + id);
   }
 });
+let dataUser;
 app.post("/post/challenge", upload.single("image"), async (req, res) => {
   const token = req.body["g-recaptcha-response"];
   const response = await axios.post(
@@ -186,12 +187,12 @@ app.get("/YunayuSNS/login", (request, response) => {
   response.redirect(redirect_url);
 });
 function make_config(authorization_token) {
-  data = {
+  dataUser = {
     headers: {
       authorization: `Bearer ${authorization_token}`,
     },
   };
-  return data;
+  return dataUser;
 } //? Amati Tiru Plek ketiplek
 app.get(`/admin/${process.env.privateAdmin}/accept/:id`, async (req, res) => {
   const id = req.params.id;
@@ -289,20 +290,22 @@ app.get("/YunayuSNS/login/redirect", async (request, response) => {
     )
     .then((res) => {
       const user = users.find(
-        (user) => user.userId === btoa(res.data.username)
+        (user) =>
+          user.userId === Buffer.from(res.data.username).toString("base64")
       );
       //!🔥 FIRE THIS SONGGG
       if (!user || user <= -1) {
         users.push({
-          userId: btoa(res.data.username),
+          userId: Buffer.from(res.data.username).toString("base64"),
           username: res.data.username,
           isQueue: false,
           isAdmin: false,
           isBan: false,
         });
         response.render("redirect", {
-          data: {
-            userId: btoa(res.data.username),
+          data: data,
+          dataUser: {
+            userId: Buffer.from(res.data.username).toString("base64"),
             username: res.data.username,
             isQueue: false,
             isAdmin: false,
@@ -313,7 +316,8 @@ app.get("/YunayuSNS/login/redirect", async (request, response) => {
         response.redirect("/YunaSNS/");
       }
       response.render("redirect", {
-        data: users[user],
+        data: data,
+        dataUser: users[user],
       });
     })
     .catch((err) => {

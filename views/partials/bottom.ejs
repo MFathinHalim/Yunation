@@ -37,6 +37,16 @@
             ><i class="fab fa-twitter"></i
           ></a>
 
+          <a
+          data-mdb-ripple-init
+          href="https://discord.gg/yunayuispink"
+            class="btn btn-link btn-floating border rounded-pill btn-lg text-body m-1"
+            role="button"
+            data-mdb-ripple-color="dark"
+          >
+            <i class="fab fa-discord"></i>
+          </a>
+
 
           <!-- Instagram -->
           <a
@@ -89,9 +99,20 @@
     reader.readAsDataURL(file);
   });
 
+  var isLoggedIn = localStorage.getItem('isLoggedIn');
+  if(isLoggedIn !== "true") {
+    const anchor = document.createElement('a'); // Create an anchor element
+    anchor.href = "/YunayuSNS/login"; // Set the href attribute (link destination)
+    anchor.classList.add('btn', 'btn-primary', 'rounded-pill'); // Add desired CSS classes
+    anchor.textContent = "Login"; // Set the text content displayed on the link
+
+    // Append the anchor element to the desired container in your HTML:
+    const container = document.getElementById('sns'); // Replace with your container's ID
+    container.appendChild(anchor);
+
+  }
   function onSubmit(token) {
     // Handle form submission or any other action you want after reCAPTCHA is verified
-  var isLoggedIn = localStorage.getItem('isLoggedIn');
   if(isLoggedIn === "true") {
     document.getElementById("myForm").submit();
   }else {
