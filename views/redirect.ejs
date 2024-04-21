@@ -23,9 +23,9 @@
       window.location.href = "/YunaSNS/";
     } else {
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("username", "<%= data.username %>");
-      localStorage.setItem("userId", "<%= data.userId %>");
-      localStorage.setItem("admin", "<%= data.isAdmin %>");
+      localStorage.setItem("username", "<%= dataUser.username %>");
+      localStorage.setItem("userId", "<%= dataUser.userId %>");
+      localStorage.setItem("admin", "<%= dataUser.isAdmin %>");
       window.location.href = "/YunaSNS";
     }
   </script>

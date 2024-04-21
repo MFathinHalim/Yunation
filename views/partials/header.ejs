@@ -40,7 +40,7 @@
   </head>
   <body>
     <nav
-class="navbar navbar-expand-sm p-1 border shadow-sm m-2 glass position-fixed navbar-light rounded-lg" style="z-index: 1000; position: sticky;"
+class="navbar navbar-expand-sm p-1 border m-2 glass position-fixed navbar-light rounded-pill" style="z-index: 1000; position: sticky; border-radius: 34px !important;"
     >
       <div class="container-fluid">
         <button
@@ -58,42 +58,34 @@ class="navbar navbar-expand-sm p-1 border shadow-sm m-2 glass position-fixed nav
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item <% if(title==='Home') {%> active <% } %>">
-              <a class="nav-link shadow-sm" href="/">Yunation</a>
+              <a class="nav-link" href="/">Yunation</a>
             </li>
             <li class="nav-item <% if(title==='About') {%> active <% } %>">
-              <a class="nav-link shadow-sm" href="/about">About Us</a>
+              <a class="nav-link" href="/about">About Us</a>
             </li>
-            <li class="nav-item dropdown">
+
               <a
-                class="nav-link shadow-sm dropdown-toggle <% if(title==='YunaSNS') {%> active <% } %>"
-                href="#"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
+                class="nav-link <% if(title==='YunaSNS') {%> active <% } %>"
+                href="/YunaSNS"
+
               >
                 YunaSNS
               </a>
-              <div
-                class="dropdown-menu dropdown-menu-right bg-light border-dark"
-                style=""
-                aria-labelledby="navbarDropdown"
-              >
-                <a class="dropdown-item" href="/YunaSNS">Gallery</a>
-                <!--a class="dropdown-item" href="/YunaSNS/challenge">Challange</a-->
-                <div class="dropdown-divider"></div>
+
+            </li>
+                        <% if(title==="YunaSNS") { %>
+               <li class="nav-item <% if(title==='About') {%> active <% } %>">
                 <a
-                  class="add dropdown-item"
+                  class="nav-link"
+                  id="add"
                   href="#"
                   data-bs-toggle="modal"
                   data-bs-target="#uploadModal"
                 >
-                  <strong>Add Image</strong>
-                </a>
-                <a class="dropdown-item" href="/Logout">Logout</a>
-              </div>
-            </li>
+                  Add Image
+                </a>                </li>
+                
+                <% } %>
           </ul>
         </div>
       </div>
