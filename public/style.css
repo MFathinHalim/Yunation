@@ -6,7 +6,7 @@
   --accent: #ffcacc;
 }
 body {
-  font-family: "Karla";
+  font-family: "Karla" !important;
 
   background-color: var(--background) !important;
   color: var(--text) !important;
@@ -32,6 +32,8 @@ a {
 }
 .highlight {
   text-shadow: 2px 2px var(--primary);
+  font-family: "Shadows Into Light";
+  font-size: larger;
 }
 .active {
   font-weight: bolder !important;
@@ -42,7 +44,7 @@ img {
   border: 2px dotted var(--primary) !important;
 }
 .btn {
-  transition: transform 0.2s; /* Animation */
+  transition: background 0.2s !important; /* Animation */
 }
 
 .btn-link:hover {
@@ -60,6 +62,18 @@ img {
   backdrop-filter: blur(5.8px) !important;
   -webkit-backdrop-filter: blur(5.8px) !important;
 }
+.glasses {
+  background: rgba(122, 74, 122, 0.21) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(5.8px) !important;
+  -webkit-backdrop-filter: blur(5.8px) !important;
+}
+@media (max-width: 767px) {
+  .glasses {
+    background: none !important;
+    backdrop-filter: none !important;
+  }
+}
 body {
   font-family: "Karla";
 }
@@ -74,16 +88,14 @@ body {
 label {
   font-weight: bold;
 }
+.img-fluid {
+  width: 100%;
+  height: auto;
+}
 
 .modal-header {
   border-bottom: none;
   padding-bottom: 3px !important;
-}
-.navbar-toggler:focus,
-.navbar-toggler:active,
-.navbar-toggler-icon:focus {
-  outline: none;
-  box-shadow: none;
 }
 
 .card > img {
@@ -108,9 +120,6 @@ label {
   }
 }
 
-.nav-brand:active {
-  transform: scale(0.9);
-}
 .add {
   transition: all 0.2s ease-in-out;
 }

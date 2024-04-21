@@ -5,9 +5,18 @@ const ImageKit = require("imagekit");
 const path = require("path");
 const mongoose = require("mongoose");
 const multer = require("multer");
-const { mainModel, challengeModel } = require("./models/post");
+const { mainModel, challengeModel, userModel } = require("./models/model");
 const cors = require("cors"); // Import the CORS middleware
 const axios = require("axios");
+const rateLimit = require("express-rate-limit");
+const limiter = rateLimit({
+  windowMs: 8 * 60 * 1000, // 15 menit
+  max: 1, // maksimal 1 request setiap 15 menit
+  message: "Try Again Later:D.",
+});
+
+//* Welcome :D
+const config = require("./config.json");
 
 dotenv.config();
 
@@ -21,8 +30,11 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 let data;
 let dataChallenge;
+let users = [];
 
 const app = express();
+app.use("/post", limiter);
+app.use("/postChallenge.", limiter);
 
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "/public")));
@@ -52,7 +64,9 @@ app.post("/post", upload.single("image"), async (req, res) => {
   // TODO: Sesuaikan dengan data yang diunggah dari penyimpanan memori
   const desc = req.body.desc;
   const name = req.body.name;
+  const userId = Buffer.from(req.body.username).toString("base64");
   const id = data.length + 1;
+  const accept = false;
   let imgLink;
   // Misalnya, untuk mengakses buffer dari file yang diunggah
   if (req.file) {
@@ -77,14 +91,16 @@ app.post("/post", upload.single("image"), async (req, res) => {
         // Simpan ke basis data atau lakukan tindakan lainnya
         await mainModel.create({
           id,
+          userId,
           name,
           desc,
           imgLink,
           comments,
+          accept,
         });
 
-        data.unshift({ id, name, desc, imgLink, comments });
-        res.redirect("/YunayuSNS/" + id);
+        data.unshift({ id, userId, name, desc, imgLink, comments, accept });
+        res.redirect("/YunaSNS/" + id);
       }
     );
   } else if (req.body.link) {
@@ -100,9 +116,10 @@ app.post("/post", upload.single("image"), async (req, res) => {
     });
 
     data.unshift({ id, name, desc, imgLink, comments });
-    res.redirect("/YunayuSNS/" + id);
+    res.redirect("/YunaSNS/" + id);
   }
 });
+let dataUser;
 app.post("/post/challenge", upload.single("image"), async (req, res) => {
   const token = req.body["g-recaptcha-response"];
   const response = await axios.post(
@@ -164,8 +181,171 @@ app.post("/post/challenge", upload.single("image"), async (req, res) => {
     res.redirect("/YunayuSNS/challenge/" + id);
   }
 });
+
+app.get("/YunayuSNS/login", (request, response) => {
+  const redirect_url = `https://discord.com/oauth2/authorize?response_type=code&client_id=${config.CLIENT_ID}&scope=identify&state=123456&redirect_uri=${config.REDIRECT_URI}&prompt=consent`;
+  response.redirect(redirect_url);
+});
+function make_config(authorization_token) {
+  dataUser = {
+    headers: {
+      authorization: `Bearer ${authorization_token}`,
+    },
+  };
+  return dataUser;
+} //? Amati Tiru Plek ketiplek
+app.get(`/admin/${process.env.privateAdmin}/accept/:id`, async (req, res) => {
+  const id = req.params.id;
+  let acceptedData = data.find((obj) => obj.id === id);
+  acceptedData = {
+    id: acceptedData.id,
+    userId: acceptedData.userId,
+    name: acceptedData.name,
+    desc: acceptedData.desc,
+    imgLink: acceptedData.imgLink,
+    comments: acceptedData.comments,
+    accept: true,
+  };
+
+  if (!acceptedData) {
+    res.send("Data not found");
+    return;
+  }
+
+  try {
+    // Find the index of the ongoing article in the 'data' array
+    const existingDataIndex = data.findIndex((obj) => obj.id === id);
+
+    // Update or create the data in the 'data' array
+    if (existingDataIndex !== -1) {
+      data[existingDataIndex] = acceptedData;
+      await mainModel.findOneAndUpdate({ id: id }, acceptedData);
+    }
+
+    // Render the 'ongoing' page with the updated data
+    res.redirect("/YunaSNS/");
+  } catch {
+    res.redirect("/YunaSNS/");
+  } //! INI BELUM SEPARUHNYA, BIASA SAJA KAMU TAK APA :D
+});
+app.get("/YunayuSNS/challenge/accept/:id", async (req, res) => {
+  const { userId } = req.body;
+  const id = req.params.id;
+  const admin = users.find((user) => user.userId === userId && user.isAdmin);
+  if (admin) {
+    const acceptedData = dataChallenge.find((obj) => obj.id === id);
+    const acceptedtheData = {
+      id: acceptedData.id,
+      userId: acceptedData.userId,
+      name: acceptedData.name,
+      desc: acceptedData.desc,
+      imgLink: acceptedData.imgLink,
+      comments: acceptedData.comments,
+      accept: true,
+    };
+
+    if (!acceptedtheData) {
+      res.send("Data not found");
+      return;
+    }
+
+    try {
+      // Find the index of the ongoing article in the 'data' array
+      const existingDataIndex = dataChallenge.findIndex((obj) => obj.id === id);
+
+      // Update or create the data in the 'data' array
+      if (existingDataIndex !== -1) {
+        dataChallenge[existingDataIndex] = acceptedtheData;
+        await challengeModel.findOneAndUpdate({ id: id }, acceptedtheData);
+      }
+
+      // Render the 'ongoing' page with the updated data
+      res.redirect("/YunaSNS/");
+    } catch {
+      res.redirect("/YunaSNS/");
+    }
+  }
+});
+app.get("/YunayuSNS/login/redirect", async (request, response) => {
+  const code = request.query["code"];
+  const resp = await axios.post(
+    "https://discord.com/api/oauth2/token",
+    new URLSearchParams({
+      client_id: process.env.CLIENT_ID,
+      client_secret: process.env.CLIENT_SECRET,
+      grant_type: "authorization_code",
+      redirect_uri: config.REDIRECT_URI,
+      code: code,
+    }),
+    {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+    }
+  );
+  axios
+    .get(
+      "https://discord.com/api/users/@me",
+      make_config(resp.data.access_token)
+    )
+    .then((res) => {
+      const user = users.find(
+        (user) =>
+          user.userId === Buffer.from(res.data.username).toString("base64")
+      );
+      //!🔥 FIRE THIS SONGGG
+      if (!user || user <= -1) {
+        users.push({
+          userId: Buffer.from(res.data.username).toString("base64"),
+          username: res.data.username,
+          isQueue: false,
+          isAdmin: false,
+          isBan: false,
+        });
+        response.render("redirect", {
+          data: data,
+          dataUser: {
+            userId: Buffer.from(res.data.username).toString("base64"),
+            username: res.data.username,
+            isQueue: false,
+            isAdmin: false,
+            isBan: false,
+          },
+        });
+      } else if (users[user].isBan) {
+        response.redirect("/YunaSNS/");
+      }
+      response.render("redirect", {
+        data: data,
+        dataUser: users[user],
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      response.sendStatus(500);
+    });
+});
+app.get(`/admin/${process.env.privateAdmin}`, (req, res) => {
+  res.render("admin", { title: "Admin", challenge: false, data: data });
+});
+app.get(`/admin/${process.env.privateAdmin}/delete/:id`, (req, res) => {
+  const id = req.params.id;
+
+  mainModel
+    .deleteOne({ id: id })
+    .then(() => {
+      console.log("deleted"); // Success
+      data = data.filter((obj) => obj.id != id); // Filter the data
+    })
+    .catch((error) => {
+      console.log(error); // Failure
+    });
+});
 app.get("/", function (req, res) {
   res.render("home", { title: "Home", challenge: false });
+});
+app.get("/logout", function (req, res) {
+  res.render("logout-redirect", { title: "Logout", challenge: false });
 });
 app.get("/about", function (req, res) {
   res.render("about", { title: "About", challenge: false });
@@ -199,8 +379,10 @@ app.post("/post/:id/comment", async (req, res) => {
     { $push: { comments: { comment: comment } } }
   );
 
-  return res.redirect(`/YunayuSNS/${entry.id}`);
+  return res.redirect(`/YunaSNS/details/${entry.id}`);
 });
+
+//? Mantap gitu ya :D
 app.post("/post/challenge/:id/comment", async (req, res) => {
   const entryId = parseInt(req.params.id);
   const comment = req.body.comment;
@@ -252,7 +434,7 @@ mongoose.connect(process.env.MONGODBURI, { useNewUrlParser: true }).then(() => {
         })
         .then((res2) => {
           dataChallenge = res2;
-          app.get("/YunayuSNS/:id", function (req, res) {
+          app.get("/YunayuSNS/details/:id", function (req, res) {
             const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
             const searchResult = data.find((entry) => entry.id == searchTerm);
 
@@ -264,7 +446,8 @@ mongoose.connect(process.env.MONGODBURI, { useNewUrlParser: true }).then(() => {
               challenge: false,
             });
           });
-          app.get("/YunayuSNS/challenge/:id", function (req, res) {
+
+          app.get("/YunayuSNS/challenge/details/:id", function (req, res) {
             const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
             const searchResult = dataChallenge.find(
               (entry) => entry.id == searchTerm
