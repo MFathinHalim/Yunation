@@ -1,19 +1,7 @@
     <hr>
     <footer class="text-center mt-3">
               <!-- Grid container -->
-      <div class="container p-4">
-        <!-- Section: Iframe -->
-        <section class="">
-          <div class="row d-flex justify-content-center">
-            <div class="col-lg-6">
-              <div class="ratio ratio-16x9">
-                <iframe class="rounded shadow" width="1905" height="803" src="https://www.youtube.com/embed/Ryrun7d6Eic" title="Drawing people in Vrchat part2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
-            </div>
-          </div>
-        </section>
-        <!-- Section: Iframe -->
-      </div>
+     
         <div class="container pt-4">
         <!-- Section: Social media -->
         <section class="mb-4">
@@ -127,13 +115,24 @@
       anchor.classList.add('btn', 'btn-danger', 'rounded-pill'); // Add desired CSS classes
       anchor.textContent = "Logout ?"; // Set the text content displayed on the link
 
+      const div = document.createElement('div'); // Create an anchor element
+      div.classList.add('d-grid', 'gap-2', 'd-sm-flex', 'justify-content-sm-center'); // Add desired CSS classes
       // Append the anchor element to the desired container in your HTML:
       const container = document.getElementById('sns'); // Replace with your container's ID
       
       const anchor2 = document.createElement('h2'); // Create an anchor element
       anchor2.textContent = `Welcome, @${localStorage.getItem("username")} •ᴗ•`; // Set the text content displayed on the link
+      
+      const anchor3 = document.createElement('a'); // Create an anchor element
+      anchor3.classList.add('btn', 'btn-primary', 'rounded-pill'); // Add desired CSS classes
+      anchor3.textContent = "Add Image"; // Set the text content displayed on the link
+      anchor3.setAttribute('data-bs-toggle', 'modal');
+      anchor3.setAttribute('data-bs-target', '#uploadModal');
+
       container.appendChild(anchor2);
-      container.appendChild(anchor);
+      container.appendChild(div)
+      div.appendChild(anchor3);
+      div.appendChild(anchor);
   }
   function onSubmit(token) {
     // Handle form submission or any other action you want after reCAPTCHA is verified

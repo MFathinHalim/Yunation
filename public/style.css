@@ -39,8 +39,9 @@ a {
   font-weight: bolder !important;
 }
 
-img {
-  border-radius: 12px;
+img,
+#hi {
+  border-radius: 12px !important;
   border: 2px dotted var(--primary) !important;
 }
 .btn {
@@ -223,4 +224,20 @@ img {
 ::-webkit-scrollbar-thumb {
   background-color: var(--accent);
   outline: 1px solid slategrey;
+}
+.floating-button {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 40px;
+  right: 40px;
+  background-color: var(--primary);
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+}
+
+.my-float {
+  margin-top: 22px;
 }
