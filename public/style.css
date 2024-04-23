@@ -5,6 +5,17 @@
   --secondary: #465845;
   --accent: #ffcacc;
 }
+[data-theme='dark'] {
+  a{
+    color: var(--background) !important;
+  }
+  .modal-body, .modal-header, .modal-content {
+    background-color: var(--secondary) !important;
+  }
+  background: var(--text) !important;
+  color: var(--background) !important;
+}
+
 body {
   font-family: "Karla" !important;
 

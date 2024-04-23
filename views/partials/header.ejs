@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+  <head data-theme="dark">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yunation | <%= title %></title>
@@ -38,7 +38,7 @@
     <link href='https://fonts.googleapis.com/css?family=Just Another Hand' rel='stylesheet'>
 
   </head>
-  <body>
+  <body >
     <nav
 class="navbar navbar-expand-sm p-1 border m-2 glass position-fixed navbar-light rounded-pill" style="z-index: 1000; position: sticky; border-radius: 34px !important;"
     >
@@ -83,9 +83,14 @@ class="navbar navbar-expand-sm p-1 border m-2 glass position-fixed navbar-light 
                   data-bs-target="#uploadModal"
                 >
                   Add Image
-                </a>                </li>
+                </a>
+              </li>
                 
                 <% } %>
+            <li class="nav-item">
+              <a class="nav-link" id="toggle">
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -307,3 +312,25 @@ class="navbar navbar-expand-sm p-1 border m-2 glass position-fixed navbar-light 
     </div>
   <div class="pt-5"></div>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+      const toggle = document.getElementById("toggle");
+      // Cek localStorage untuk mode gelap
+      if (localStorage.getItem("darkmode") && localStorage.getItem("darkmode")==="true") {
+        // Jika darkmode aktif, tambahkan kelas "dark" ke body dan ubah ikon toggle menjadi sun
+        document.body.dataset.theme = "dark";
+        toggle.innerHTML = '<i class="fas fa-sun"></i>';
+      } else {
+        // Jika darkmode tidak aktif, buat localStorage baru dan ubah ikon toggle menjadi moon
+        localStorage.setItem("darkmode", false);
+        document.body.dataset.theme = "light";
+        toggle.innerHTML = '<i class="fas fa-moon"></i>';
+      }
+      toggle.addEventListener("click", () => {
+        // Beralih antara mode terang dan gelap
+        const isDark = localStorage.getItem("darkmode") === "true";
+        localStorage.setItem("darkmode", !isDark);
+        document.body.dataset.theme = isDark ? "light" : "dark";
+        toggle.innerHTML = isDark ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+      });
+
+  </script>
