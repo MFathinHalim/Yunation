@@ -424,6 +424,7 @@ mongoose.connect(process.env.MONGODBURI, { useNewUrlParser: true }).then(() => {
           {
             $or: [{ comments: { $exists: false } }, { comments: { $size: 0 } }],
           },
+
           { $set: { comments: [] } },
           { upsert: true } // Menambahkan dokumen baru jika tidak ditemukan
         )

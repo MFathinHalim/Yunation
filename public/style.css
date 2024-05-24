@@ -4,6 +4,29 @@
   --primary: #e493b3;
   --secondary: #465845;
   --accent: #ffcacc;
+  --background-dark:  #181a1b;
+  --text-dark: #F2EFF0;
+}
+[data-theme='dark'] {
+  a{
+    color: var(--text-dark) !important;
+  }
+  .modal-body, .modal-header, .modal-content {
+    background-color: var(--secondary) !important;
+  }
+  div:where(.swal2-container) div:where(.swal2-popup){
+    background: var(--background-dark) !important;
+    color: var(--text-dark) !important;
+  }
+  background: var(--background-dark) !important;
+  color: var(--text-dark) !important;
+  #toggle:hover {
+    border: 1px dashed var(--primary) !important;
+  }
+}
+#toggle:hover {
+  border-radius: 24px;
+  border: 1px dashed var(--text) !important;
 }
 body {
   font-family: "Karla" !important;
