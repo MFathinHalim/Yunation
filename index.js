@@ -302,6 +302,13 @@ app.get("/YunayuSNS/login/redirect", async (request, response) => {
           isAdmin: false,
           isBan: false,
         });
+        userModel.create({
+          userId: Buffer.from(res.data.username).toString("base64"),
+          username: res.data.username,
+          isQueue: false,
+          isAdmin: false,
+          isBan: false,
+        });
         response.render("redirect", {
           data: data,
           dataUser: {
@@ -434,6 +441,7 @@ mongoose.connect(process.env.MONGODBURI, { useNewUrlParser: true }).then(() => {
           return challengeModel.find({});
         })
         .then((res2) => {
+          user = userModel.find({});
           dataChallenge = res2;
           app.get("/YunayuSNS/details/:id", function (req, res) {
             const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
