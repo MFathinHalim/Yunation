@@ -441,7 +441,9 @@ mongoose.connect(process.env.MONGODBURI, { useNewUrlParser: true }).then(() => {
           return challengeModel.find({});
         })
         .then((res2) => {
-          user = userModel.find({});
+          userModel.find({}).then((res3) => {
+            users = res3;
+          });
           dataChallenge = res2;
           app.get("/YunayuSNS/details/:id", function (req, res) {
             const searchTerm = parseInt(req.params.id); // Dapatkan ID dari URL dan ubah ke tipe numerik jika perlu
