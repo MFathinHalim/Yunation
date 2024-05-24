@@ -289,12 +289,13 @@ app.get("/YunayuSNS/login/redirect", async (request, response) => {
       make_config(resp.data.access_token)
     )
     .then((res) => {
-      const user = users.find(
+      const user = users.findIndex(
         (user) =>
           user.userId === Buffer.from(res.data.username).toString("base64")
       );
+      console.log(user);
       //!🔥 FIRE THIS SONGGG
-      if (!user || user <= -1) {
+      if (user <= -1) {
         users.push({
           userId: Buffer.from(res.data.username).toString("base64"),
           username: res.data.username,
@@ -319,7 +320,7 @@ app.get("/YunayuSNS/login/redirect", async (request, response) => {
             isBan: false,
           },
         });
-      } else if (users[user].isBan) {
+      } else if (user !== -1 && users[user].isBan) {
         response.redirect("/YunaSNS/");
       }
       response.render("redirect", {
