@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Varela%20Round:700|Varela%20Round:400');
 :root {
   --background: #f8f8f8;
   --text: #030303;
@@ -28,14 +29,26 @@
   border-radius: 24px;
   border: 1px dashed var(--text) !important;
 }
-body {
-  font-family: "Karla" !important;
 
-  background-color: var(--background) !important;
-  color: var(--text) !important;
+:root {
+  --text: #101410;
+  --background: #f7f8f7;
+  --primary: #d5e2d5;
+  --secondary: #ffccce;
+  --accent: #d9c3ef;
+}
+
+body {
+  font-family: 'Varela Round' !important;
+  font-weight: 600 !important;
+}
+
+h1, h2, h3, h4, h5, button, p , li{
+  font-family: 'Varela Round';
+  font-weight: 600 !important;
 }
 a {
-  color: var(--primary);
+  color: var(--text) !important;
 }
 .bg-white {
   background-color: var(--background) !important;
@@ -98,9 +111,7 @@ img,
     backdrop-filter: none !important;
   }
 }
-body {
-  font-family: "Karla";
-}
+
 .grecaptcha-badge {
   visibility: hidden;
 }
@@ -263,4 +274,38 @@ img {
 
 .my-float {
   margin-top: 22px;
+}
+.quote-card {
+  background-color: var(--primary);
+  border: 2px var(--primary) solid;
+  padding: 40px;
+  border-radius: 24px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 700px;
+  height: 200px;
+  text-align: center;
+}
+
+.quote-button {
+  padding: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  font-weight: 600;
+  font-size: x-large;
+  font-family: 'Varela Round' ;
+  border-radius: 24px;
+  max-width: 100%;
+  margin-top: 10px;
+  background-color: var(--secondary);
+  transition: all 0.3s ease;
+  position: relative;
+  border: 2px var(--secondary) solid
+}
+.quote-button:hover {
+  transform: translateY(-3px);
+  background-color: rgb(240, 203, 205);
+  cursor: pointer;
 }
