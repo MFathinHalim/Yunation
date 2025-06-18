@@ -4,6 +4,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Yunation",
   description: "An art community for Yunation fans",
+  icons: {
+    icon: "https://cdn.glitch.global/55de0177-2d52-43bf-a066-45796ec8e7c9/BocchiYuna.webp?v=1713409649865"
+  }
 };
 
 export default function RootLayout({
