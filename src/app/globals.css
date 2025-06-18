@@ -1,5 +1,15 @@
 @import "tailwindcss";
 
+@import url("https://fonts.googleapis.com/css2?family=Caveat&family=Dancing+Script&family=Varela+Round&display=swap");
+
 body {
-  background-color: #fffaf8 !important;
+  background-color: #fffaf8;
+  font-family: "Varela Round", sans-serif;
+}
+
+.font-dancing {
+  font-family: "Shadows Into Light", cursive;
+}
+.font-caveat {
+  font-family: "Caveat", cursive;
 }
