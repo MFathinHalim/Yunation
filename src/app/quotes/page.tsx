@@ -14,7 +14,7 @@ export default function RandomQuotes() {
 
     return (
         <div className="flex items-center z-20 justify-center h-[90vh]">
-            <article className="text-center z-10 bg-[#FFE8CD] px-3 py-6 rounded-lg shadow-lg w-[90vw] h-[55%] flex flex-col justify-center items-center">
+            <article className="text-center z-10 bg-[#FFE8CD] px-3 py-6 rounded-3xl shadow-lg w-[90vw] h-[75%] flex flex-col justify-center items-center">
                 <h1 className="py-3 text-4xl font-bold">
                     <strong>Quotes</strong>
                 </h1>
