@@ -1,48 +1,58 @@
-## Yunation
+# 🪐 Yunation — Community Art's Landing Page
 
-Yunation is an art community made by Yunayu. This page made to be a fan landing page
+**Yunation** is an art & creative community built by **Yunayu**—a vibrant platform that showcases gaming, music, photography, programming, and more. It’s more than art; it’s a friendly, all-in-one introduction to what the Yunation vibe is about.
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Live demo 👉 [yunation.glitch.me](https://yunation.vercel.app)
 
-## HOW TO RUN
+> “Have a good x10000000 day for everyone!! :D”
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎨 About Yunation
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The name is a blend of **“Yuna” + “Nation”**, symbolizing a creative space curated by Yunayu (aka Yuna). The landing page features:
+- A rotating image slider highlighting featured creations  
+- A quote of the day to inspire visitors  
+- “Yuyu,” the affectionate name for Yunation community members  
+- Social links (Instagram, Discord) showcasing gaming, music, photo, and coding content :contentReference[oaicite:2]{index=2}
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features
 
-## Learn More
+- 💻 Simple, responsive landing page decked out with Glitch + basic HTML/CSS/JS  
+- 🖼️ Rotating image slider for featured artworks  
+- 🎙️ Inspirational quotes to set the tone  
+- 🌐 Links to Yunayu’s social platforms  
+- 🎯 Great as a digital introduction or “about me” scene for a creative community
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🛠 Built With
 
-the website design:
+- Next.JS
+- Image slider component (custom JS or a simple library)
+- Social media embeds for Instagram, Discord, etc.
 
-- https://www.figma.com/design/bjl3Tuw1OYI84Cxh6IO3lJ/Yunation?node-id=0-1&p=f&t=COApiqfULuPxAph7-0
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🚀 Use & Remix
 
-## Deploy on Vercel
+1. Clone or remix on Glitch  
+2. Replace images with your own  
+3. Customize the quote & community name  
+4. Host anywhere (Glitch, Vercel, GitHub Pages…)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🤝 Credits
 
-## The previous website link
+**Yunayu** (aka @yunayuispink):  
+- 289K Instagram followers and active across TikTok and X, showcasing art challenges and tutorials :contentReference[oaicite:3]{index=3}  
+- Runs **Yunation** to combine visual art with gaming, music, photography, and programming :contentReference[oaicite:4]{index=4}
 
-https://yunation.glitch.me
+---
+
+## 📄 License
+
+Licensed under the **MIT License** — remix and adapt freely 💫
