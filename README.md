@@ -48,8 +48,8 @@ The name is a blend of **“Yuna” + “Nation”**, symbolizing a creative spa
 ## 🤝 Credits
 
 **Yunayu** (aka @yunayuispink):  
-- 289K Instagram followers and active across TikTok and X, showcasing art challenges and tutorials :contentReference[oaicite:3]{index=3}  
-- Runs **Yunation** to combine visual art with gaming, music, photography, and programming :contentReference[oaicite:4]{index=4}
+- 289K Instagram followers and active across TikTok and X, showcasing art challenges and tutorials
+- Runs **Yunation** to combine visual art with gaming, music, photography, and programming
 
 ---
 
