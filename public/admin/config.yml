@@ -10,9 +10,9 @@ media_library:
 
 collections:
   - name: "about"
-    label: "About Page"
+    label: "Yunation's About Page (sorry for minimal and confusing design 😅)"
     files:
-      - label: "About Page Content"
+      - label: "Click this to edit the About Page Content"
         name: "about"
         file: "public/content/about.json"
         fields:
