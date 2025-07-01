@@ -3,9 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yunayu CMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Varela Round Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Style -->
+    <style>
+      * {
+        font-family: "Varela Round", sans-serif !important;
+      }
+
+      body {
+        background-color: #fffaf8;
+        color: #333;
+      }
+
+      /* CMS area */
+      .nc-root {
+        background-color: #fffaf8 !important;
+      }
+
+      .nc-sidebar,
+      .nc-collectionPage,
+      .nc-editorControlPane,
+      .nc-loginView {
+        background-color: #fffaf8 !important;
+      }
+
+      /* Optional - Tombol login */
+      .nc-loginView-button,
+      .nc-githubLoginButton {
+        background-color: #f49ac2 !important;
+        color: white !important;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        padding: 10px 20px;
+        cursor: pointer;
+      }
+
+      .nc-loginView-button:hover {
+        background-color: #ec77a9 !important;
+      }
+
+      /* Optional - Card hover */
+      .nc-entryCard {
+        border-radius: 12px;
+        transition: all 0.2s ease;
+      }
+
+      .nc-entryCard:hover {
+        background-color: #ffeef6;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+      }
+    </style>
   </head>
   <body>
     <div id="nc-root"></div>
+
+    <!-- CMS Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.1/dist/decap-cms.js"></script>
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
     <script>
