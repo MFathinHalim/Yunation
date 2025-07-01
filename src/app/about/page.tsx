@@ -62,22 +62,25 @@ export default function About() {
                     <h2 className="text-3xl font-bold">{about.website.title}</h2>
                     <p className="leading-relaxed max-w-3xl">{about.website.description}</p>
                 </section>
-
-                {/* About Coder */}
-                <section className="flex flex-col md:flex-row items-start gap-6 mb-10">
-                    <img
-                        src={about.coder.image}
-                        alt="M.Fathin Halim"
-                        className="h-32 object-cover rounded-lg border shadow"
-                    />
-                    <div className="space-y-3 flex-1">
-                        <h2 className="text-2xl font-bold">{about.coder.title}</h2>
-                        <p className="leading-relaxed">
-                            {about.coder.description.split("Portfolio").join(
-                                `<a href="${about.coder.portfolioLink}" class="underline text-blue-600">Portfolio</a>`
-                            )}
-                        </p>
-                    </div>
+                <section className="flex flex-col gap-6 mb-10">
+                    {about.coders.map((coder: any, index: number) => (
+                        <div key={index} className="flex flex-col md:flex-row items-start gap-6">
+                            {/* About Coder */}
+                            <section className="flex flex-col md:flex-row items-start gap-6 mb-10">
+                                <img
+                                    src={coder.image}
+                                    alt="M.Fathin Halim"
+                                    className="h-32 object-cover rounded-lg border shadow"
+                                />
+                                <div className="space-y-3 flex-1">
+                                    <h2 className="text-2xl font-bold">{coder.title}</h2>
+                                    <p className="leading-relaxed">
+                                        {coder.description.split("Portfolio")} <a href="${about.coder.portfolioLink}" className="font-bold hover:underline">Portfolio</a>
+                                    </p>
+                                </div>
+                            </section>
+                        </div>
+                    ))}
                 </section>
 
                 {/* Contributors */}
@@ -94,7 +97,7 @@ export default function About() {
             </div>
 
             {/* Wave Footer */}
-            <div className="w-full z-0 pointer-events-none">
+            < div className="w-full z-0 pointer-events-none" >
                 <img src="/wave.svg" className="w-full" alt="wave" />
             </div>
         </>

@@ -21,12 +21,14 @@
     "title": "About This Website",
     "description": "This website is made by the 'Programmer Hero' from Yunation! It was created to introduce the community to many people and to share artworks from Yunayu and Crayuns."
   },
-  "coder": {
-    "title": "About Coder: M.Fathin Halim",
-    "description": "M.Fathin Halim (or in Discord known as Coder Hero) is a middle school student who loves to code and wants to be a 'Programmer Hero'! He already made several projects including the Yunation website, and others in his Portfolio.",
-    "image": "/uploads/image-124.png",
-    "portfolioLink": "https://mfathinhalim.github.io/portfolio"
-  },
+  "coders": [
+    {
+      "title": "About Coder: M.Fathin Halim",
+      "description": "M.Fathin Halim (or in Discord known as Coder Hero) is a middle school student who loves to code and wants to be a 'Programmer Hero'! He already made several projects including the Yunation website, and others in his Portfolio.",
+      "image": "/uploads/image-124.png",
+      "portfolioLink": "https://mfathinhalim.github.io/portfolio"
+    }
+  ],
   "contributors": [
     {
       "username": "@cielgrin_",

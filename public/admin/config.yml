@@ -76,9 +76,9 @@ collections:
                 name: "description"
                 widget: "text"
 
-          - label: "Coder Info"
-            name: "coder"
-            widget: "object"
+          - label: "Coders"
+            name: "coders"
+            widget: "list"
             fields:
               - label: "Title"
                 name: "title"
