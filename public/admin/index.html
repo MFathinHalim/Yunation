@@ -15,15 +15,15 @@
     <script>
       // Tunggu sampai CMS dan DOM bener-bener siap
       document.addEventListener("DOMContentLoaded", () => {
-        if (!window.CMS) {
-          console.error("CMS belum siap!");
-          return;
-        }
+        const CMS = window.CMS;
 
-        window.CMS.init({
+        CMS.init({
           backend: {
             name: "git-gateway",
             branch: "main",
+          },
+          media_library: {
+            name: "default",
           },
           media_folder: "public/uploads",
           public_folder: "/uploads",
