@@ -6,12 +6,19 @@
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </head>
   <body>
+    <!-- container buat CMS -->
     <div id="nc-root"></div>
 
-    <script>
+    <!-- inisialisasi CMS pas semuanya udah siap -->
+    <script type="module">
       window.CMS_MANUAL_INIT = true;
 
-      window.onload = function () {
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!window.CMS) {
+          console.error("CMS belum siap!");
+          return;
+        }
+
         window.CMS.init({
           backend: {
             name: "git-gateway",
@@ -74,7 +81,7 @@
                             },
                           ],
                         },
-                        { label: "Image URL", name: "image", widget: "image" },
+                        { label: "Image", name: "image", widget: "image" },
                       ],
                     },
                     {
@@ -114,7 +121,7 @@
                           name: "description",
                           widget: "text",
                         },
-                        { label: "Image URL", name: "image", widget: "image" },
+                        { label: "Image", name: "image", widget: "image" },
                         {
                           label: "Portfolio Link",
                           name: "portfolioLink",
@@ -141,7 +148,7 @@
             },
           ],
         });
-      };
+      });
     </script>
   </body>
 </html>
