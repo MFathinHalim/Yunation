@@ -14,7 +14,7 @@ collections:
     files:
       - label: "About Page Content"
         name: "about"
-        file: "content/about.json"
+        file: "public/content/about.json"
         fields:
           - label: "Intro"
             name: "intro"
