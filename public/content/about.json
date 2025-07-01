@@ -1,7 +1,7 @@
 {
   "intro": {
     "title": "About Us",
-    "description": "This website is made to introduce the community to many people and to share many artworks from Yunayu and YUYUS!"
+    "description": "This website is made to introduce the community to many people and to share many artworks from Yunayu and Crayuns"
   },
   "yunayu": {
     "title": "Yunayu",
@@ -19,7 +19,7 @@
   },
   "website": {
     "title": "About This Website",
-    "description": "This website is made by the 'Programmer Hero' from Yunation! It was created to introduce the community to many people and to share artworks from Yunayu and YUYUS."
+    "description": "This website is made by the 'Programmer Hero' from Yunation! It was created to introduce the community to many people and to share artworks from Yunayu and Crayuns."
   },
   "coder": {
     "title": "About Coder: M.Fathin Halim",
@@ -28,9 +28,21 @@
     "portfolioLink": "https://mfathinhalim.github.io/portfolio"
   },
   "contributors": [
-    { "username": "@cielgrin_", "role": "Designer" },
-    { "username": "@tsukiakuri", "role": "Bug and Suggestion" },
-    { "username": "@evandapro", "role": "Grammar Finalisations" },
-    { "username": "@quangbui", "role": "Suggestions" }
+    {
+      "username": "@cielgrin_",
+      "role": "Designer"
+    },
+    {
+      "username": "@tsukiakuri",
+      "role": "Bug and Suggestion"
+    },
+    {
+      "username": "@evandapro",
+      "role": "Grammar Finalisations"
+    },
+    {
+      "username": "@quangbui",
+      "role": "Suggestions"
+    }
   ]
 }
