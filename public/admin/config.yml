@@ -1,0 +1,63 @@
+collections:
+  - name: "about"
+    label: "About Page"
+    files:
+      - label: "About Page Content"
+        name: "about"
+        file: "content/about.json"
+        fields:
+          - label: "Intro"
+            name: "intro"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+          - label: "Yunayu"
+            name: "yunayu"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - label: "Facts"
+                name: "facts"
+                widget: "object"
+                fields:
+                  - { label: "Fun Fact", name: "funFact", widget: "string" }
+                  - { label: "Dream", name: "dream", widget: "string" }
+                  - { label: "Ambition", name: "ambition", widget: "string" }
+              - { label: "Image URL", name: "image", widget: "image" }
+
+          - label: "Yunation"
+            name: "yunation"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+          - label: "Website Info"
+            name: "website"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+
+          - label: "Coder Info"
+            name: "coder"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Image URL", name: "image", widget: "image" }
+              - {
+                  label: "Portfolio Link",
+                  name: "portfolioLink",
+                  widget: "string",
+                }
+
+          - label: "Contributors"
+            name: "contributors"
+            widget: "list"
+            fields:
+              - { label: "Username", name: "username", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }

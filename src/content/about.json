@@ -1,0 +1,36 @@
+{
+  "intro": {
+    "title": "About Us",
+    "description": "This website is made to introduce the community to many people and to share many artworks from Yunayu and YUYUS!"
+  },
+  "yunayu": {
+    "title": "Yunayu",
+    "description": "Yunayu is a drawing hero! A very talented artist, coming to bless us with her amazing artworks. She also takes a lot of inspiration from the anime Bocchi the Rock!",
+    "facts": {
+      "funFact": "Has been drawing for 4 years (since 2020)",
+      "dream": "Becoming a Manga Artist and making very awesome work!",
+      "ambition": "Becoming a Manga Artist and making very awesome work!"
+    },
+    "image": "https://cdn.glitch.global/55de0177-2d52-43bf-a066-45796ec8e7c9/BocchiYuna.webp?v=1713409649865"
+  },
+  "yunation": {
+    "title": "Yunation",
+    "description": "Yunation is a community made by Yunayu! Yunation is not just an art community, but also a friendly platform for many things like gaming, music, photography and even programming!"
+  },
+  "website": {
+    "title": "About This Website",
+    "description": "This website is made by the 'Programmer Hero' from Yunation! It was created to introduce the community to many people and to share artworks from Yunayu and YUYUS."
+  },
+  "coder": {
+    "title": "About Coder: M.Fathin Halim",
+    "description": "M.Fathin Halim (or in Discord known as Coder Hero) is a middle school student who loves to code and wants to be a 'Programmer Hero'! He already made several projects including the Yunation website, and others in his Portfolio.",
+    "image": "https://i.ebayimg.com/images/g/lfAAAOSwG45kDHZr/s-l1200.jpg",
+    "portfolioLink": "https://mfathinhalim.github.io/portfolio"
+  },
+  "contributors": [
+    { "username": "@cielgrin_", "role": "Designer" },
+    { "username": "@tsukiakuri", "role": "Bug and Suggestion" },
+    { "username": "@evandapro", "role": "Grammar Finalisations" },
+    { "username": "@quangbui", "role": "Suggestions" }
+  ]
+}
