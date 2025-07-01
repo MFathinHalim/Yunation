@@ -1,6 +1,20 @@
-import about from "@/content/about.json";
+import { useEffect, useState } from "react";
 
 export default function About() {
+    const [about, setAbout] = useState<any>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        fetch("/content/about.json")
+            .then((res) => res.json())
+            .then((data) => {
+                setAbout(data);
+                setLoading(false);
+            });
+    }, []);
+
+    if (loading || !about) return <p className="text-center py-10">Loading...</p>;
+    //ts-ignore
     const contributors = about.contributors;
     const currentYear = new Date().getFullYear();
     const drawingSince = currentYear - 2020;
@@ -69,7 +83,7 @@ export default function About() {
                 <section className="space-y-4">
                     <h2 className="text-3xl font-bold">Other Contributors</h2>
                     <ul className="list-disc pl-6 space-y-2 text-gray-700">
-                        {contributors.map((c, i) => (
+                        {contributors.map((c: any, i: any) => (
                             <li key={i}>
                                 <b>{c.username}</b> → <i>{c.role}</i>
                             </li>
