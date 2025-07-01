@@ -3,33 +3,42 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yunayu CMS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <!-- HARUS ADA -->
+    <!-- CMS container -->
     <div id="nc-root"></div>
+
+    <!-- Manual init -->
     <script>
-      // Cegah auto-init, kita init manual
       window.CMS_MANUAL_INIT = true;
     </script>
-    <script src="https://unpkg.com/decap-cms@3.1.1/dist/decap-cms.js"></script>
-    <script src="https://unpkg.com/decap-cms@3.1.1/dist/decap-cms-media-library-uploadcare.js"></script>
 
+    <!-- Load CMS core & media library -->
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.1/dist/decap-cms.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/decap-cms@3.1.1/dist/decap-cms-media-library-uploadcare.js"></script>
+
+    <!-- CMS config & init -->
     <script>
-      // Tunggu sampai CMS dan DOM bener-bener siap
       document.addEventListener("DOMContentLoaded", () => {
         const CMS = window.CMS;
-        CMS.registerMediaLibrary(window.Uploadcare);
 
+        // Daftarin media library (uploadcare)
+        if (window.Uploadcare) {
+          CMS.registerMediaLibrary(window.Uploadcare);
+        }
+
+        // Init DecapCMS
         CMS.init({
           backend: {
             name: "git-gateway",
             branch: "main",
           },
+          media_folder: "public/uploads",
+          public_folder: "/uploads",
           media_library: {
             name: "uploadcare",
           },
-          media_folder: "public/uploads",
-          public_folder: "/uploads",
           collections: [
             {
               name: "about",
