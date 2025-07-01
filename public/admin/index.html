@@ -3,19 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <title>Yunayu CMS</title>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+    <script
+      src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"
+      onload="startCMS()"
+    ></script>
   </head>
   <body>
     <!-- container buat CMS -->
     <div id="nc-root"></div>
 
     <!-- inisialisasi CMS pas semuanya udah siap -->
-    <script type="module">
+    <script>
       window.CMS_MANUAL_INIT = true;
 
-      document.addEventListener("DOMContentLoaded", () => {
+      function startCMS() {
         if (!window.CMS) {
-          console.error("CMS belum siap!");
+          console.error("CMS beneran belum siap! 😭");
           return;
         }
 
@@ -148,7 +151,7 @@
             },
           ],
         });
-      });
+      }
     </script>
   </body>
 </html>
