@@ -2,12 +2,160 @@
 import { useRef, useState, useEffect } from "react";
 import Tooltip from "@mui/material/Tooltip";
 
+function DragMediaGrid() {
+  const [content, setContent] = useState([
+    {
+      id: 1,
+      type: "image",
+      src: "https://pbs.twimg.com/media/F9b-dY9aMAAac0P.jpg",
+    },
+    {
+      id: 2,
+      type: "image",
+      src: "https://pbs.twimg.com/media/F2vzXNlaMAAO6Gi.jpg",
+    },
+    {
+      id: 3,
+      type: "video",
+      src: "https://www.youtube.com/embed/M89C6vstdbw?si=Ujb2Q5qu8aboFJk7",
+    },
+    {
+      id: 4,
+      type: "image",
+      src: "/bigimg.jpg",
+    },
+  ]);
+
+  const dragItem = useRef<number | null>(null);
+
+  const handleDragStart = (index: number) => {
+    dragItem.current = index;
+  };
+
+  const handleDrop = (index: number) => {
+    const fromIndex = dragItem.current;
+    if (fromIndex === null || fromIndex === index) return;
+
+    const updated = [...content];
+    const temp = updated[fromIndex];
+    updated[fromIndex] = updated[index];
+    updated[index] = temp;
+
+    setContent(updated);
+    dragItem.current = null;
+  };
+
+  const renderItem = (item: any, index: number, className: string) => (
+    <div
+      key={item.id}
+      draggable
+      onDragStart={() => handleDragStart(index)}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={() => handleDrop(index)}
+      className={`${className} border-black/60 border object-cover cursor-move`}
+    >
+      {item.type === "image" ? (
+        <img src={item.src} alt={`img-${index}`} className="w-full h-full object-cover" />
+      ) : (
+        <iframe
+          className="w-full h-full"
+          src={item.src}
+          title={`video-${index}`}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      )}
+    </div>
+  );
+
+  return (
+    <div className="bg-white shadow-lg lg:w-[70vw] lg:max-h-[70vh] mx-8 my-1 z-10 flex flex-col lg:flex-row">
+      {/* Kiri */}
+      <div className="flex flex-col w-full lg:w-2/3">
+        <div className="group flex flex-col h-full">
+          <div className="flex transition-all duration-300 ease-in-out h-1/2 group-hover:h-1/3">
+            {renderItem(content[0], 0, "w-1/2 h-full border-t-2 border-l-2 border-r-2")}
+            {renderItem(content[1], 1, "w-1/2 h-full border-t-2 border-r-2")}
+          </div>
+
+          <div className="transition-all duration-300 ease-in-out h-1/2 group-hover:h-2/3 border-2 border-black/60">
+            {renderItem(content[2], 2, "w-full h-full")}
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden lg:block w-full lg:w-1/2 h-auto">
+        {renderItem(content[3], 3, "w-full h-full border-t-2 border-r-2 border-b-2")}
+      </div>
+    </div>
+  );
+}
+
+
 export default function Home() {
   const [showPopup, setShowPopup] = useState(false);
   const [showPopup2, setShowPopup2] = useState(false);
   const [zCounter, setZCounter] = useState(100);
   const [zIndex1, setZIndex1] = useState(100);
   const [zIndex2, setZIndex2] = useState(99);
+  const [chibiPos, setChibiPos] = useState({ top: 80, left: 80 });
+  const [hasMouse, setHasMouse] = useState(false);
+  const allowEscape = useRef(false);
+
+  useEffect(() => {
+    const detectMouse = (e: MouseEvent) => {
+      setHasMouse(true);
+      window.removeEventListener("mousemove", detectMouse);
+    };
+
+    window.addEventListener("mousemove", detectMouse);
+    return () => window.removeEventListener("mousemove", detectMouse);
+  }, []);
+
+  const escapeCooldown = useRef(false);
+
+  const moveChibiRandomly = () => {
+    if (escapeCooldown.current) return;
+
+    escapeCooldown.current = true;
+    const newTop = Math.random() * 80;
+    const newLeft = Math.random() * 80;
+    setChibiPos({ top: newTop, left: newLeft });
+
+    setTimeout(() => {
+      escapeCooldown.current = false;
+    }, 500);
+  };
+
+  useEffect(() => {
+    allowEscape.current = Math.random() < 0.2;
+  }, []);
+
+  useEffect(() => {
+    if (!hasMouse || !allowEscape.current) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      const button = document.getElementById("chibi-yuna-btn");
+      if (!button) return;
+
+      const rect = button.getBoundingClientRect();
+      const distX = Math.abs(rect.left + rect.width / 2 - mouseX);
+      const distY = Math.abs(rect.top + rect.height / 2 - mouseY);
+
+      if (distX < 100 && distY < 100) {
+        moveChibiRandomly();
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [hasMouse]);
+
+
+
 
   const audioOpenRef = useRef(null);
   const audioOpen2Ref = useRef(null);
@@ -121,11 +269,18 @@ export default function Home() {
     else setZIndex2(nextZ);
   };
 
+
+
   return (
     <>
       <div className="flex flex-col justify-center items-center min-h-screen relative z-10 py-7">
         <div className="flex justify-between items-center w-full px-7 lg:px-0 lg:w-[70vw] z-10 mb-3">
           <h1 className="text-4xl font-bold text-shadow-md font-dancing">Yunation</h1>
+          {!showPopup && !showPopup2 && (
+            <div className="hidden md:block text-center mt-5 text-gray-500 italic text-sm animate-pulse">
+              (psst... click "About Us" or Chibi Yuna for a surprise!)
+            </div>
+          )}
           <button
             onClick={() => {
               setShowPopup(true);
@@ -148,38 +303,8 @@ export default function Home() {
 
         </div>
 
-        <div className="bg-white shadow-lg lg:w-[70vw] lg:max-h-[70vh] mx-8 my-1 z-10 flex flex-col lg:flex-row">
-          <div className="flex flex-col w-full lg:w-2/3">
-            <div className="group flex flex-col h-full">
-              {/* Gambar-gambar */}
-              <div className="flex transition-all duration-300 ease-in-out h-1/2 group-hover:h-1/3">
-                <img
-                  className="w-1/2 h-full object-cover border-t-2 border-black/60 border-l-2 border-black/60 border-r-2 border-black/60"
-                  src="https://pbs.twimg.com/media/F9b-dY9aMAAac0P.jpg"
-                  alt="img1"
-                />
-                <img
-                  className="w-1/2 h-full object-cover border-t-2 border-black/60 border-r-2 border-black/60"
-                  src="https://pbs.twimg.com/media/F2vzXNlaMAAO6Gi.jpg"
-                  alt="img2"
-                />
-              </div>
+        <DragMediaGrid />
 
-              {/* Video */}
-              <iframe
-                className="w-full transition-all duration-300 ease-in-out h-1/2 group-hover:h-2/3 border-2 border-black/60"
-                src="https://www.youtube.com/embed/M89C6vstdbw?si=Ujb2Q5qu8aboFJk7"
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
-            </div>
-
-          </div>
-          <div className="hidden lg:block w-full lg:w-1/2 h-auto">
-            <img className="w-full h-full object-cover border-t-2 border-black/60 border-r-2 border-black/60 border-b-2 border-black/60" src="/bigimg.jpg" alt="big img" />
-          </div>
-        </div>
 
         <div className="flex gap-6 mt-3 mb-10 lg:mb-0 z-10 flex-col lg:flex-row w-full lg:w-auto px-8 font-caveat font-semibold text-xl">
           <a onMouseEnter={() => {
@@ -235,6 +360,7 @@ export default function Home() {
           },
         }} arrow>
           <button
+            id="chibi-yuna-btn"
             onMouseEnter={() => {
               //@ts-ignore
               audioShineRef.current.currentTime = 0;
@@ -247,18 +373,27 @@ export default function Home() {
               setShowPopup2(true);
               bringToFront("popup2");
             }}
-            className="cursor-pointer lg:fixed bottom-4 right-4 z-20
+            className="cursor-pointer fixed z-20
     transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]
     hover:-translate-y-1 active:translate-y-0.5"
+            style={{
+              top: `${chibiPos.top}vh`,
+              left: `${chibiPos.left}vw`,
+              position: "fixed",
+              transition: "top 0.3s ease, left 0.3s ease"
+            }}
           >
-            <img src="/chibiyuna.png" className="h-30" />
+            <img src="/chibiyuna.png" className="h-50 md:h-30 object-contain" />
+            <p className="text-sm text-gray-500 italic mt-2">Click meee</p>
+
           </button>
+
         </Tooltip>
 
         <div className="absolute bottom-0 left-0 w-full z-0 pointer-events-none">
           <img src="/wave.svg" className="w-full" />
         </div>
-      </div>
+      </div >
 
       {showPopup && (
         <div
@@ -272,21 +407,24 @@ export default function Home() {
           </div>
           <iframe src="/about" className="w-full h-full" title="About Us" />
         </div>
-      )}
+      )
+      }
 
-      {showPopup2 && (
-        <div
-          ref={popupRef2}
-          className="fixed w-[90vw] h-[80vh] xl:h-[60vh] xl:w-[50vw] bg-white border shadow-lg rounded-lg overflow-hidden"
-          style={{ top: position2.current.top, left: position2.current.left, zIndex: zIndex2 }}
-        >
-          <div ref={headerRef2} className="cursor-move px-4 py-2 border-b flex justify-between items-center" onMouseDown={() => bringToFront("popup2")}>
-            <h2 className="font-bold">Fun Stuff :D</h2>
-            <button onClick={() => setShowPopup2(false)} className="text-lg cursor-pointer">✖</button>
+      {
+        showPopup2 && (
+          <div
+            ref={popupRef2}
+            className="fixed w-[90vw] h-[80vh] xl:h-[60vh] xl:w-[50vw] bg-white border shadow-lg rounded-lg overflow-hidden"
+            style={{ top: position2.current.top, left: position2.current.left, zIndex: zIndex2 }}
+          >
+            <div ref={headerRef2} className="cursor-move px-4 py-2 border-b flex justify-between items-center" onMouseDown={() => bringToFront("popup2")}>
+              <h2 className="font-bold">Fun Stuff :D</h2>
+              <button onClick={() => setShowPopup2(false)} className="text-lg cursor-pointer">✖</button>
+            </div>
+            <iframe src="/quotes" className="w-full h-full" title="Quotes" />
           </div>
-          <iframe src="/quotes" className="w-full h-full" title="Quotes" />
-        </div>
-      )}
+        )
+      }
       <audio ref={audioOpenRef} src="/open.mp3" preload="auto" />
       <audio ref={audioOpen2Ref} src="/open2.mp3" preload="auto" />
       <audio ref={audioCloseRef} src="/close.mp3" preload="auto" />

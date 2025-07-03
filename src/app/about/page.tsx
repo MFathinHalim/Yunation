@@ -5,6 +5,7 @@ export default function About() {
     const [about, setAbout] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
         fetch("/content/about.json")
             .then((res) => res.json())
